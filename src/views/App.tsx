@@ -1,20 +1,24 @@
-import tauriCircles from './tauri.svg'
+import tauriCircles from '../assets/tauri.svg'
 import './App.css'
 import LoadCSV from './LoadCSV'
 import React from 'react'
+import CSVParser from '../data/CSVParser';
+import PeerReviews from './PeerReviews';
 
-class App extends React.Component<{}, {contents?: string}> {
+class App extends React.Component<{}, { data?: {}}> {
   constructor(props: {}) {
     super(props);
-    this.state = { contents: undefined };
+    this.state = { data: undefined };
   };
 
-  fileLoaded = (contents: string) => {
-    this.setState(previous => ({ contents }));
+  fileLoaded = async (contents: string) => {
+    const parser = new CSVParser(contents)
+    const data = await parser.getData();
+    this.setState(previous => ({ data }));
   }
 
   render = () => {
-    if (!this.state.contents) {
+    if (!this.state.data) {
       return (
         <div className="App">
           <header className="App-header">
@@ -32,7 +36,7 @@ class App extends React.Component<{}, {contents?: string}> {
     } else {
       return (
         <div className="App">
-          {this.state.contents}
+          <PeerReviews data={this.state.data}/>
         </div>
       )
     }
