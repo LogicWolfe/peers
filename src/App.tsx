@@ -9,29 +9,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="inline-logo">
-          <h1>Hello!</h1>
           <img src={tauriCircles} className="App-logo rotate" alt="logo" />
-          <img src={tauriWord} className="App-logo smaller" alt="logo" />
+          <h1>Peers</h1>
         </div>
-        <a
-          className="App-link"
-          href="https://tauri.studio"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Tauri
-        </a>
-        <img src={logo} className="App-logo rotate" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Quick and easy peer review aggregation.
         </p>
       </header>
     </div>
