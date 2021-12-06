@@ -6,9 +6,12 @@ class Submission {
   public static readonly TIMESTAMP_INDEX = 0
   public static readonly STUDENT_NAME_INDEX = 1
   public static readonly STUDENT_NUMBER_INDEX = 2
+  
   public static readonly REVIEW_LENGTH = 6
   public static readonly FIRST_REVIEW_QUESTION_INDEX = 4
   public static readonly MAXIMUM_REVIEWS = 7
+  // This is an array of start and end indexes for the multiple
+  // reviews included in a given row.
   public static readonly REVIEW_RANGES:number[][] = 
     Array(this.MAXIMUM_REVIEWS).fill(undefined).map((_, i) => {
       [ 
@@ -35,10 +38,10 @@ class Submission {
   }
 
   private studentFromRow = (): Student => {
-    return Student.fromName({
-      name: this.row[Submission.STUDENT_NAME_INDEX],
-      studentId: parseInt(this.row[Submission.STUDENT_NUMBER_INDEX], 10)
-    })
+    return Student.fromName(
+      this.row[Submission.STUDENT_NAME_INDEX],
+      parseInt(this.row[Submission.STUDENT_NUMBER_INDEX], 10)
+    )
   }
 
   private answersFromRow = (): Answer[] => {
