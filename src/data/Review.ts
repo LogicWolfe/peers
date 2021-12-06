@@ -37,6 +37,7 @@ class Review {
     this.reviewer = reviewer
     this.submission = submission
     this.responses = responses
+    this.subject.addReview(this)
   }
 
   communicationScore = () => parseFloat(this.responses[Review.COMMUNICATION_OFFSET])
