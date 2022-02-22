@@ -1,10 +1,14 @@
-#![cfg_attr(
-  all(not(debug_assertions), target_os = "windows"),
-  windows_subsystem = "windows"
-)]
+use std::fs;
 
 fn main() {
   tauri::Builder::default()
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+  .invoke_handler(tauri::generate_handler![read_file])
+  .run(tauri::generate_context!())
+  .expect("error while running tauri application");
+}
+
+#[tauri::command]
+fn read_file(path: &str) -> String {
+  let data = fs::read_to_string(path).expect("Unable to read file");
+  data.into()
 }

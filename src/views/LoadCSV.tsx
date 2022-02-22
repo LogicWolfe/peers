@@ -1,5 +1,5 @@
 import React from 'react';
-import { dialog, fs } from '@tauri-apps/api'
+import { dialog, fs, tauri } from '@tauri-apps/api'
 
 interface FileLoadedFunction {
   (fileContents: string): void
@@ -27,8 +27,10 @@ class LoadCSV extends React.Component<LoadCSVProps> {
         multiple: false
       }
     ) as string
-    const csv = await fs.readTextFile(path);
-    this.props.fileLoaded(csv);
+    const csv = await tauri.invoke('read_file', { path: path });
+    if (typeof csv === 'string') {
+      this.props.fileLoaded(csv);
+    }
   }
 
   render() {
