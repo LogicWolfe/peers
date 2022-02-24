@@ -1,23 +1,24 @@
 import React from 'react';
 import Student from '../data/Student'
+import { Header, Message } from 'semantic-ui-react'
 
 interface FeedbackProps {
   student: Student
 }
 
-class FeedbackView extends React.Component<FeedbackProps> {
+class Feedback extends React.Component<FeedbackProps> {
   render() {
     const valuedContributions = this.props.student.valuedContributions().map(
-      (feedback) => <li>{feedback}</li>
+      (feedback) => <Message.Item>{feedback}</Message.Item>
     )
     
     const areasOfImprovement = this.props.student.areasOfImprovement().map(
-      (feedback) => <li>{feedback}</li>
+      (feedback) => <Message.Item>{feedback}</Message.Item>
     )
 
     return (
       <div>
-        <h2>The Digital Economy – Team Report Peer Feedback</h2>
+        <Header as="h2">The Digital Economy – Team Report Peer Feedback</Header>
 
         <p>
           This rubric provides a summary of feedback from your peers (averaged).
@@ -44,21 +45,25 @@ class FeedbackView extends React.Component<FeedbackProps> {
           <br/>
           <br/>
           This means that your overall mark for your individual contributions to the
-          team report was: { this.props.student.totalScore().toPrecision(2) } / 20
+          team report was: { this.props.student.totalScore().toPrecision(3) } / 20
         </p>
 
-        Contributions your team members valued included:
-        <ul>
-          { valuedContributions }
-        </ul>
+        <Message>
+          <Message.Header>Contributions your team members valued included:</Message.Header>
+          <Message.List>
+            { valuedContributions }
+          </Message.List>
+        </Message>
 
-        Areas you might work on include:
-        <ul>
-          { areasOfImprovement }
-        </ul>
+        <Message>
+          <Message.Header>Areas you might work on include:</Message.Header>
+          <Message.List>
+            { areasOfImprovement }
+          </Message.List>
+        </Message>
       </div>
     )
   }
 }
 
-export default FeedbackView
+export default Feedback

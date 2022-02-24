@@ -1,6 +1,5 @@
 import 'buffer'
 import Papa from 'papaparse';
-import { tauri } from '@tauri-apps/api';
 import Submission from './Submission';
 
 class CSVParser {

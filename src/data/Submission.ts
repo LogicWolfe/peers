@@ -16,7 +16,7 @@ class Submission {
     Array(this.MAXIMUM_REVIEWS).fill(undefined).map((_, i) => {
       return [ 
         (Submission.FIRST_REVIEW_QUESTION_INDEX+i+i*Submission.REVIEW_LENGTH),
-        (Submission.FIRST_REVIEW_QUESTION_INDEX-1+i+(i+1)*Submission.REVIEW_LENGTH)
+        (Submission.FIRST_REVIEW_QUESTION_INDEX+i+(i+1)*Submission.REVIEW_LENGTH)
       ]
     }) as unknown as number[][]
     
@@ -26,7 +26,6 @@ class Submission {
     this.student = this.studentFromRow()
     this.answers = this.answersFromRow()
     this.reviews = this.reviewsFromRow()
-    console.log("Submission", this);
   }
   row: string[]
   createdAt: Date
