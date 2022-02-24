@@ -13,7 +13,7 @@ class App extends React.Component<{}, { data?: {}}> {
 
   fileLoaded = async (contents: string) => {
     const parser = new CSVParser(contents)
-    const data = await parser.getData();
+    const data = await parser.getSubmissions();
     this.setState(previous => ({ data }));
   }
 

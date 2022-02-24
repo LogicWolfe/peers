@@ -1,5 +1,5 @@
 import React from 'react';
-import { dialog, fs, tauri } from '@tauri-apps/api'
+import { dialog, tauri } from '@tauri-apps/api'
 
 interface FileLoadedFunction {
   (fileContents: string): void

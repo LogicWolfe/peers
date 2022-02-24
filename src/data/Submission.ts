@@ -14,18 +14,19 @@ class Submission {
   // reviews included in a given row.
   public static readonly REVIEW_RANGES:number[][] = 
     Array(this.MAXIMUM_REVIEWS).fill(undefined).map((_, i) => {
-      [ 
+      return [ 
         (Submission.FIRST_REVIEW_QUESTION_INDEX+i+i*Submission.REVIEW_LENGTH),
         (Submission.FIRST_REVIEW_QUESTION_INDEX-1+i+(i+1)*Submission.REVIEW_LENGTH)
       ]
     }) as unknown as number[][]
     
   constructor(row: string[]) {
-    this.row = row
+    this.row = row;
     this.createdAt = this.createdAtFromRow()
     this.student = this.studentFromRow()
     this.answers = this.answersFromRow()
     this.reviews = this.reviewsFromRow()
+    console.log("Submission", this);
   }
   row: string[]
   createdAt: Date
@@ -45,14 +46,15 @@ class Submission {
   }
 
   private answersFromRow = (): Answer[] => {
-    this.row.map((answer, i) => {
-      new Answer({
+    return [];
+    console.log(this.row);
+    return this.row.map((answer, i) => {
+      return new Answer({
         text: answer, 
         questionIndex: i, 
         submission: this
       })
     })
-    return [];
   }
 
   private reviewsFromRow = (): Review[] => {

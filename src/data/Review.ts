@@ -18,12 +18,16 @@ class Review {
 
   public static fromSlice = (slice: string[], submission: Submission): Review | undefined => {
     let studentName = slice[Review.SUBJECT_NAME_OFFSET]
-    return new Review({
-      subject: Student.fromName(studentName),
-      reviewer: submission.student,
-      submission: submission,
-      responses: slice
-    });
+    if (studentName) {
+      return new Review({
+        subject: Student.fromName(studentName),
+        reviewer: submission.student,
+        submission: submission,
+        responses: slice
+      });
+    } else {
+      return undefined
+    }
   }
 
   readonly subject: Student
