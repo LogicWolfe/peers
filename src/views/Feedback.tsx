@@ -18,6 +18,11 @@ class Feedback extends React.Component<FeedbackProps> {
 
     return (
       <div>
+        <Header as="h1">{this.props.student.name}</Header>
+        <Message>
+          <Message.Content>Reviewers: {this.props.student.reviewedBy()}</Message.Content>
+        </Message>
+
         <Header as="h2">The Digital Economy – Team Report Peer Feedback</Header>
 
         <p>

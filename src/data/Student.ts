@@ -16,6 +16,12 @@ class Student {
   public static all(): Student[] {
     return Object.values(this.students).sort((a, b) => (a.name < b.name) ? -1 : 1)
   }
+
+  public static clear() {
+    console.log("Cleared students");
+    this.students = {};
+  }
+
   constructor(name: string, studentId?: number) {
     this.name = name
     this.studentId = studentId
@@ -61,6 +67,12 @@ class Student {
     return this.reviews.map(
       (r) => r.areasOfImprovement()).filter(Boolean).sort( () => .5 - Math.random()
     )
+  }
+
+  reviewedBy() {
+    return this.reviews.map(
+      (r) => r.reviewer.name
+    ).join(', ');
   }
 }
 

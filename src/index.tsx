@@ -2,12 +2,12 @@ import 'semantic-ui-css/semantic.min.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './views/App';
 import reportWebVitals from './reportWebVitals';
+import PeerReviews from './views/PeerReviews';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <PeerReviews />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,7 @@
 import React from 'react';
 import { dialog, tauri } from '@tauri-apps/api'
+import { Button } from 'semantic-ui-react';
+
 
 interface FileLoadedFunction {
   (fileContents: string): void
@@ -35,7 +37,7 @@ class LoadCSV extends React.Component<LoadCSVProps> {
 
   render() {
     return (
-      <button onClick={this.loadFile}>Start</button>
+      <Button color='blue' onClick={this.loadFile}>Import CSV</Button>
     )
   }
 }
