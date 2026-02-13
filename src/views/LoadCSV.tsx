@@ -19,21 +19,15 @@ class LoadCSV extends React.Component<LoadCSVProps> {
   };
 
   loadFile = async () => {
-    const path = await open(
-      {
-        filters: [
-          {
-            name: 'CSVs',
-            extensions: ['csv']
-          }
-        ],
-        multiple: false
-      }
-    ) as string
-    const csv = await invoke('read_file', { path: path });
-    if (typeof csv === 'string') {
-      this.props.fileLoaded(csv);
-    }
+    const path = await open({
+      filters: [{ name: 'CSVs', extensions: ['csv'] }],
+      multiple: false,
+    });
+
+    if (path === null) return;
+
+    const csv = await invoke<string>('read_file', { path });
+    this.props.fileLoaded(csv);
   }
 
   render() {
