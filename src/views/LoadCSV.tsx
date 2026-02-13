@@ -1,5 +1,6 @@
 import React from 'react';
-import { dialog, tauri } from '@tauri-apps/api'
+import { open } from '@tauri-apps/plugin-dialog';
+import { invoke } from '@tauri-apps/api/core';
 import { Button } from 'semantic-ui-react';
 
 
@@ -18,21 +19,15 @@ class LoadCSV extends React.Component<LoadCSVProps> {
   };
 
   loadFile = async () => {
-    const path = await dialog.open(
-      {
-        filters: [
-          {
-            name: 'CSVs',
-            extensions: ['csv']
-          }
-        ],
-        multiple: false
-      }
-    ) as string
-    const csv = await tauri.invoke('read_file', { path: path });
-    if (typeof csv === 'string') {
-      this.props.fileLoaded(csv);
-    }
+    const path = await open({
+      filters: [{ name: 'CSVs', extensions: ['csv'] }],
+      multiple: false,
+    });
+
+    if (path === null) return;
+
+    const csv = await invoke<string>('read_file', { path });
+    this.props.fileLoaded(csv);
   }
 
   render() {

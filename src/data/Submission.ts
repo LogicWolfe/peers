@@ -46,14 +46,6 @@ class Submission {
 
   private answersFromRow = (): Answer[] => {
     return [];
-    console.log(this.row);
-    return this.row.map((answer, i) => {
-      return new Answer({
-        text: answer, 
-        questionIndex: i, 
-        submission: this
-      })
-    })
   }
 
   private reviewsFromRow = (): Review[] => {
