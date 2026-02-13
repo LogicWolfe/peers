@@ -1,4 +1,3 @@
-import 'buffer'
 import Papa from 'papaparse';
 import Submission from './Submission';
 
